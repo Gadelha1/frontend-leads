@@ -36,6 +36,7 @@ import br.com.semesperanca.frontendleads.presentation.leads.LeadDetailScreen
 import br.com.semesperanca.frontendleads.presentation.leads.LeadUi
 import br.com.semesperanca.frontendleads.presentation.leads.LeadsListScreen
 import br.com.semesperanca.frontendleads.presentation.leads.LeadsViewModel
+import br.com.semesperanca.frontendleads.presentation.properties.PropertiesScreen
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -84,10 +85,7 @@ fun MainTabsScreen() {
                     title = "Atividades",
                     message = "Esta funcionalidade estará disponível em breve.",
                 )
-                MainTab.IMOVEIS -> TabPlaceholder(
-                    title = "Imóveis",
-                    message = "Esta funcionalidade estará disponível em breve.",
-                )
+                MainTab.IMOVEIS -> PropertiesScreen()
                 MainTab.USUARIOS -> TabPlaceholder(
                     title = "Usuários",
                     message = "Esta funcionalidade estará disponível em breve.",

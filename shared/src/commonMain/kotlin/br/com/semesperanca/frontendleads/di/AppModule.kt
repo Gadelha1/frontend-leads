@@ -8,6 +8,7 @@ import br.com.semesperanca.frontendleads.data.storage.createKeyValueStore
 import br.com.semesperanca.frontendleads.domain.repository.LeadRepository
 import br.com.semesperanca.frontendleads.presentation.leads.LeadDetailViewModel
 import br.com.semesperanca.frontendleads.presentation.leads.LeadsViewModel
+import br.com.semesperanca.frontendleads.presentation.properties.PropertyFormViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModelOf
@@ -23,6 +24,7 @@ private val dataModule = module {
 private val presentationModule = module {
     viewModelOf(::LeadsViewModel)
     viewModelOf(::LeadDetailViewModel)
+    viewModelOf(::PropertyFormViewModel)
 }
 
 object AppModules {
