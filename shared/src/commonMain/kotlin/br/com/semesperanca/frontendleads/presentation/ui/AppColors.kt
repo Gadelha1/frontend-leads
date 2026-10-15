@@ -1,0 +1,47 @@
+package br.com.semesperanca.frontendleads.presentation.ui
+
+import androidx.compose.ui.graphics.Color
+
+object AppColors {
+    val Gray50 = Color(0xFFF9FAFB)
+    val Gray100 = Color(0xFFF3F4F6)
+    val Gray200 = Color(0xFFE5E7EB)
+    val Gray300 = Color(0xFFD1D5DB)
+    val Gray400 = Color(0xFF9CA3AF)
+    val Gray500 = Color(0xFF6B7280)
+    val Gray600 = Color(0xFF4B5563)
+    val Gray700 = Color(0xFF374151)
+    val Gray800 = Color(0xFF1F2937)
+    val Gray900 = Color(0xFF111827)
+
+    val Emerald50 = Color(0xFFECFDF5)
+    val Emerald100 = Color(0xFFD1FAE5)
+    val Emerald200 = Color(0xFFA7F3D0)
+    val Emerald500 = Color(0xFF10B981)
+    val Emerald600 = Color(0xFF059669)
+    val Emerald700 = Color(0xFF047857)
+
+    val Red50 = Color(0xFFFEF2F2)
+    val Red500 = Color(0xFFEF4444)
+    val Red600 = Color(0xFFDC2626)
+    val Green500 = Color(0xFF22C55E)
+    val Green600 = Color(0xFF16A34A)
+    val Blue50 = Color(0xFFEFF6FF)
+    val Blue500 = Color(0xFF3B82F6)
+    val Blue600 = Color(0xFF2563EB)
+    val Purple500 = Color(0xFFA855F7)
+    val Purple600 = Color(0xFF9333EA)
+    val Purple700 = Color(0xFF7E22CE)
+    val Orange500 = Color(0xFFF97316)
+    val Orange600 = Color(0xFFEA580C)
+    val Amber100 = Color(0xFFFEF3C7)
+    val Amber500 = Color(0xFFF59E0B)
+    val Amber600 = Color(0xFFD97706)
+    val Yellow500 = Color(0xFFEAB308)
+
+    val Black = Color(0xFF000000)
+    val White = Color(0xFFFFFFFF)
+    val Black50 = Color(0x80000000)
+
+    val ThumbUnchecked = Color(0xFFF4F4F5)
+}
