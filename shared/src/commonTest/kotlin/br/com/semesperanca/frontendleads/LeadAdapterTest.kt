@@ -14,21 +14,21 @@ class LeadAdapterTest {
         id: String = "1",
         name: String = "Maria Silva",
         email: String = "maria@example.com",
-        phoneNumber: String? = null,
+        phone: Long? = null,
         transactionType: String? = null,
         status: String? = null,
     ) = LeadDto(
         id = id,
         name = name,
         email = email,
-        phoneNumber = phoneNumber,
+        phone = phone,
         transactionType = transactionType,
         status = status,
     )
 
     @Test
     fun formatsPhoneWithDdd() {
-        val ui = lead(id = "10", phoneNumber = "11999998888", transactionType = "SALE").toLeadUi()
+        val ui = lead(id = "10", phone = 11999998888L, transactionType = "SALE").toLeadUi()
         assertEquals("(11) 99999-8888", ui.phone)
     }
 
@@ -68,13 +68,13 @@ class LeadAdapterTest {
 
     @Test
     fun emptyPhoneStaysEmpty() {
-        val ui = lead(phoneNumber = null).toLeadUi()
+        val ui = lead(phone = null).toLeadUi()
         assertEquals("", ui.phone)
     }
 
     @Test
     fun matchesSearchByPhone() {
-        val ui = lead(phoneNumber = "11999998888", transactionType = "SALE").toLeadUi()
+        val ui = lead(phone = 11999998888L, transactionType = "SALE").toLeadUi()
         assertEquals(true, ui.matchesSearch("99999"))
         assertEquals(true, ui.matchesSearch("maria"))
         assertEquals(false, ui.matchesSearch("joao"))

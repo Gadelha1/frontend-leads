@@ -15,7 +15,7 @@ data class LeadDto(
     val clientListingId: String? = null,
     val name: String? = null,
     val email: String? = null,
-    val phoneNumber: Long? = null,
+    val phone: Long? = null,
     val message: String? = null,
     val temperature: String? = null,
     val transactionType: String? = null,

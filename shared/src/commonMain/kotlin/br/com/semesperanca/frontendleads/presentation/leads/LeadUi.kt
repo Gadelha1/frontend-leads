@@ -35,7 +35,7 @@ private fun formatPhone(digits: String): String =
     }
 
 fun LeadDto.toLeadUi(): LeadUi {
-    val digits = (phoneNumber ?: "").filter { it.isDigit() }
+    val digits = phone?.toString().orEmpty().filter { it.isDigit() }
     val isSale = transactionType == "SALE"
     val nature = when {
         transactionType == "RENT" -> "Aluguel"
@@ -45,7 +45,7 @@ fun LeadDto.toLeadUi(): LeadUi {
         id = id ?: "",
         name = name.orEmpty(),
         email = email.orEmpty(),
-        phone = if (digits.isNotEmpty()) formatPhone(digits) else (phoneNumber ?: ""),
+        phone = if (digits.isNotEmpty()) formatPhone(digits) else "",
         propertyName = "Imóvel",
         propertyValue = 0.0,
         nature = nature,
