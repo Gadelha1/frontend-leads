@@ -6,6 +6,7 @@ import br.com.semesperanca.frontendleads.data.repository.DefaultLeadRepository
 import br.com.semesperanca.frontendleads.data.storage.KeyValueStore
 import br.com.semesperanca.frontendleads.data.storage.createKeyValueStore
 import br.com.semesperanca.frontendleads.domain.repository.LeadRepository
+import br.com.semesperanca.frontendleads.presentation.auth.LoginViewModel
 import br.com.semesperanca.frontendleads.presentation.leads.LeadDetailViewModel
 import br.com.semesperanca.frontendleads.presentation.leads.LeadsViewModel
 import br.com.semesperanca.frontendleads.presentation.properties.PropertyFormViewModel
@@ -25,6 +26,7 @@ private val presentationModule = module {
     viewModelOf(::LeadsViewModel)
     viewModelOf(::LeadDetailViewModel)
     viewModelOf(::PropertyFormViewModel)
+    viewModelOf(::LoginViewModel)
 }
 
 object AppModules {
