@@ -7,6 +7,7 @@ enum class FormFieldType {
     DECIMAL,
     CURRENCY,
     DROPDOWN,
+    DATE_TIME,
 }
 
 data class FormOption(
