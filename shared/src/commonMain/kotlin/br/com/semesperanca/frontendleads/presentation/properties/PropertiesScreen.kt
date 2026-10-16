@@ -1,16 +1,24 @@
 package br.com.semesperanca.frontendleads.presentation.properties
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Apartment
+import androidx.compose.material.icons.filled.Sensors
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,39 +28,108 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.semesperanca.frontendleads.presentation.sensors.AssociateDeviceFormScreen
+import br.com.semesperanca.frontendleads.presentation.sensors.SensorsScreen
 import br.com.semesperanca.frontendleads.presentation.ui.AddButton
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 
 private sealed interface PropertyOverlay {
     data object None : PropertyOverlay
-    data object Create : PropertyOverlay
+    data object CreateProperty : PropertyOverlay
+    data object AssociateDevice : PropertyOverlay
+}
+
+private enum class PropertiesTab(val label: String) {
+    IMOVEIS("Imóveis"),
+    SENSORES("Sensores"),
 }
 
 @Composable
 fun PropertiesScreen() {
     var overlay by remember { mutableStateOf<PropertyOverlay>(PropertyOverlay.None) }
+    var selectedTab by remember { mutableStateOf(PropertiesTab.IMOVEIS) }
 
     Box(modifier = Modifier.fillMaxSize().background(AppColors.Gray50)) {
         when (overlay) {
-            PropertyOverlay.Create -> PropertyFormScreen(
+            PropertyOverlay.CreateProperty -> PropertyFormScreen(
                 title = "Novo Imóvel",
                 onBack = { overlay = PropertyOverlay.None },
             )
 
-            PropertyOverlay.None -> PropertiesEmptyState()
+            PropertyOverlay.AssociateDevice -> AssociateDeviceFormScreen(
+                onBack = { overlay = PropertyOverlay.None },
+            )
+
+            PropertyOverlay.None -> Column(modifier = Modifier.fillMaxSize()) {
+                PropertiesTabRow(
+                    selectedTab = selectedTab,
+                    onSelect = { selectedTab = it },
+                )
+                when (selectedTab) {
+                    PropertiesTab.IMOVEIS -> PropertiesEmptyState()
+                    PropertiesTab.SENSORES -> SensorsScreen()
+                }
+            }
         }
 
         if (overlay is PropertyOverlay.None) {
             AddButton(
-                onClick = { overlay = PropertyOverlay.Create },
+                onClick = {
+                    overlay = when (selectedTab) {
+                        PropertiesTab.IMOVEIS -> PropertyOverlay.CreateProperty
+                        PropertiesTab.SENSORES -> PropertyOverlay.AssociateDevice
+                    }
+                },
                 size = 56,
-                contentDescription = "Novo imóvel",
+                contentDescription = when (selectedTab) {
+                    PropertiesTab.IMOVEIS -> "Novo imóvel"
+                    PropertiesTab.SENSORES -> "Associar dispositivo"
+                },
+                icon = when (selectedTab) {
+                    PropertiesTab.IMOVEIS -> Icons.Filled.Add
+                    PropertiesTab.SENSORES -> Icons.Filled.Sensors
+                },
                 modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp),
             )
         }
+    }
+}
+
+@Composable
+private fun PropertiesTabRow(
+    selectedTab: PropertiesTab,
+    onSelect: (PropertiesTab) -> Unit,
+) {
+    Column(modifier = Modifier.fillMaxWidth().background(AppColors.White)) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.Center,
+        ) {
+            PropertiesTab.entries.forEach { tab ->
+                val selected = selectedTab == tab
+                Text(
+                    text = tab.label,
+                    color = if (selected) AppColors.White else AppColors.Gray600,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier
+                        .padding(horizontal = 4.dp)
+                        .clip(RoundedCornerShape(50))
+                        .background(if (selected) AppColors.Emerald600 else AppColors.Gray200)
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                        ) { onSelect(tab) }
+                        .padding(horizontal = 24.dp, vertical = 8.dp),
+                )
+            }
+        }
+        HorizontalDivider(thickness = 1.dp, color = AppColors.Gray200)
     }
 }
 
