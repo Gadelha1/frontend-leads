@@ -15,9 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -40,6 +37,10 @@ import androidx.compose.ui.unit.sp
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 import br.com.semesperanca.frontendleads.presentation.ui.ModalSheet
 import br.com.semesperanca.frontendleads.presentation.ui.RoundedTextField
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.visibility
+import br.com.semesperanca.frontendleads.resources.visibility_off
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun UserFormSheet(
@@ -124,7 +125,7 @@ fun UserFormSheet(
             trailing = {
                 IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
                     Icon(
-                        imageVector = if (isPasswordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
+                        painter = painterResource(if (isPasswordVisible) Res.drawable.visibility_off else Res.drawable.visibility),
                         contentDescription = if (isPasswordVisible) "Ocultar senha" else "Mostrar senha",
                         tint = AppColors.Gray500,
                     )

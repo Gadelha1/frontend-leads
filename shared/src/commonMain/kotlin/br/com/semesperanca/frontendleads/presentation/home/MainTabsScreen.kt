@@ -14,11 +14,14 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -43,8 +46,11 @@ import br.com.semesperanca.frontendleads.resources.apartment
 import br.com.semesperanca.frontendleads.resources.calendar_month
 import br.com.semesperanca.frontendleads.resources.groups
 import br.com.semesperanca.frontendleads.resources.list
+import br.com.semesperanca.frontendleads.resources.logout
 import br.com.semesperanca.frontendleads.resources.manage_accounts
 import org.jetbrains.compose.resources.DrawableResource
+import br.com.semesperanca.frontendleads.presentation.activities.ActivitiesScreen
+import br.com.semesperanca.frontendleads.presentation.teams.TeamsScreen
 import org.jetbrains.compose.resources.painterResource
 import br.com.semesperanca.frontendleads.presentation.users.UsersScreen
 import org.koin.compose.viewmodel.koinViewModel
@@ -88,14 +94,9 @@ fun MainTabsScreen() {
                 MainTab.LEADS -> LeadsListScreen(
                     onLeadClick = { leadDetail = it },
                 )
-                MainTab.EQUIPES -> TabPlaceholder(
-                    title = "Equipes",
-                    message = "Esta funcionalidade estará disponível em breve.",
-                )
-                MainTab.ATIVIDADES -> TabPlaceholder(
-                    title = "Atividades",
-                    message = "Esta funcionalidade estará disponível em breve.",
-                )
+
+                MainTab.EQUIPES -> TeamsScreen()
+                MainTab.ATIVIDADES -> ActivitiesScreen()
                 MainTab.IMOVEIS -> PropertiesScreen()
                 MainTab.USUARIOS -> UsersScreen()
             }
@@ -178,7 +179,7 @@ private fun Header(onLogoutClick: () -> Unit) {
         Spacer(modifier = Modifier.weight(1f))
         IconButton(onClick = onLogoutClick) {
             Icon(
-                imageVector = Icons.AutoMirrored.Filled.Logout,
+                painter = painterResource(Res.drawable.logout),
                 contentDescription = "Sair",
                 tint = AppColors.Gray700,
             )
@@ -219,28 +220,3 @@ private fun TabBarItem(
         )
     }
 }
-
-@Composable
-private fun TabPlaceholder(title: String, message: String) {
-    Column(
-        modifier = Modifier.fillMaxSize().background(AppColors.Gray50),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center,
-    ) {
-        Text(
-            text = title,
-            color = AppColors.Gray500,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(bottom = 8.dp),
-        )
-        Text(
-            text = message,
-            color = AppColors.Gray400,
-            fontSize = 14.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(horizontal = 32.dp),
-        )
-    }
-}
-

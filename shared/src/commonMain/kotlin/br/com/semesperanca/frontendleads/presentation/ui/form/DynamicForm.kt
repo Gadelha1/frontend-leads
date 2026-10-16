@@ -11,8 +11,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
@@ -32,6 +30,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.arrow_drop_down
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun DynamicForm(
@@ -190,7 +191,7 @@ private fun DropdownField(
                     fontSize = 14.sp,
                 )
                 Icon(
-                    imageVector = Icons.Filled.ArrowDropDown,
+                    painter = painterResource(Res.drawable.arrow_drop_down),
                     contentDescription = null,
                     tint = AppColors.Gray500,
                 )

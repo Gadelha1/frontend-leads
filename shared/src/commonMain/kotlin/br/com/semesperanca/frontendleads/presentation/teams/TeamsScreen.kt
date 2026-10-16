@@ -12,13 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Groups
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -45,6 +38,14 @@ import androidx.compose.ui.unit.sp
 import br.com.semesperanca.frontendleads.data.dto.TeamDto
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 import br.com.semesperanca.frontendleads.presentation.ui.form.DynamicForm
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.add
+import br.com.semesperanca.frontendleads.resources.close
+import br.com.semesperanca.frontendleads.resources.delete
+import br.com.semesperanca.frontendleads.resources.edit
+import br.com.semesperanca.frontendleads.resources.groups
+import br.com.semesperanca.frontendleads.resources.search
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -89,7 +90,7 @@ fun TeamsScreen() {
                 onClick = { viewModel.showCreateForm() },
                 containerColor = AppColors.Emerald600,
             ) {
-                Icon(Icons.Filled.Add, contentDescription = "Novo Time", tint = AppColors.White)
+                Icon(painterResource(Res.drawable.add), contentDescription = "Novo Time", tint = AppColors.White)
             }
         },
     ) { padding ->
@@ -138,11 +139,11 @@ private fun SearchBar(onSearch: (String) -> Unit, onClear: () -> Unit) {
         },
         modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp),
         placeholder = { Text("Buscar por nome...", color = AppColors.Gray400) },
-        leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null, tint = AppColors.Gray500) },
+        leadingIcon = { Icon(painterResource(Res.drawable.search), contentDescription = null, tint = AppColors.Gray500) },
         trailingIcon = {
             if (query.isNotEmpty()) {
                 IconButton(onClick = { query = ""; onClear() }) {
-                    Icon(Icons.Filled.Close, contentDescription = "Limpar", tint = AppColors.Gray500)
+                    Icon(painterResource(Res.drawable.close), contentDescription = "Limpar", tint = AppColors.Gray500)
                 }
             }
         },
@@ -172,7 +173,7 @@ private fun TeamCard(team: TeamDto, onEdit: () -> Unit, onDelete: () -> Unit) {
                     .background(AppColors.Emerald50, RoundedCornerShape(8.dp))
                     .padding(8.dp),
             ) {
-                Icon(Icons.Filled.Groups, contentDescription = null, tint = AppColors.Emerald600)
+                Icon(painterResource(Res.drawable.groups), contentDescription = null, tint = AppColors.Emerald600)
             }
             Column {
                 Text(
@@ -191,10 +192,10 @@ private fun TeamCard(team: TeamDto, onEdit: () -> Unit, onDelete: () -> Unit) {
         }
         Row {
             IconButton(onClick = onEdit) {
-                Icon(Icons.Filled.Edit, contentDescription = "Editar", tint = AppColors.Emerald600)
+                Icon(painterResource(Res.drawable.edit), contentDescription = "Editar", tint = AppColors.Emerald600)
             }
             IconButton(onClick = onDelete) {
-                Icon(Icons.Filled.Delete, contentDescription = "Excluir", tint = AppColors.Red400)
+                Icon(painterResource(Res.drawable.delete), contentDescription = "Excluir", tint = AppColors.Red400)
             }
         }
     }
@@ -223,7 +224,7 @@ private fun TeamFormScreen(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             IconButton(onClick = onDismiss) {
-                Icon(Icons.Filled.Close, contentDescription = "Fechar", tint = AppColors.Gray700)
+                Icon(painterResource(Res.drawable.close), contentDescription = "Fechar", tint = AppColors.Gray700)
             }
             Text(
                 text = if (isEditing) "Editar Time" else "Novo Time",
