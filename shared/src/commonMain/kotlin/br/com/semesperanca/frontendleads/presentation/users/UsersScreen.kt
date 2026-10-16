@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ManageAccounts
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -32,6 +30,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.semesperanca.frontendleads.presentation.ui.AddButton
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.manage_accounts
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -82,7 +83,7 @@ private fun UsersEmptyState() {
         verticalArrangement = Arrangement.Center,
     ) {
         Icon(
-            imageVector = Icons.Filled.ManageAccounts,
+            painter = painterResource(Res.drawable.manage_accounts),
             contentDescription = null,
             tint = AppColors.Gray300,
             modifier = Modifier.size(56.dp),

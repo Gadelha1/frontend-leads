@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Sensors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +16,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.sensors
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun SensorsScreen() {
@@ -27,7 +28,7 @@ fun SensorsScreen() {
         verticalArrangement = Arrangement.Center,
     ) {
         Icon(
-            imageVector = Icons.Filled.Sensors,
+            painter = painterResource(Res.drawable.sensors),
             contentDescription = null,
             tint = AppColors.Gray300,
             modifier = Modifier.size(56.dp),

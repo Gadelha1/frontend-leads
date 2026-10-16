@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -86,10 +88,6 @@ fun PropertiesScreen() {
                 contentDescription = when (selectedTab) {
                     PropertiesTab.IMOVEIS -> "Novo imóvel"
                     PropertiesTab.SENSORES -> "Associar dispositivo"
-                },
-                icon = when (selectedTab) {
-                    PropertiesTab.IMOVEIS -> Icons.Filled.Add
-                    PropertiesTab.SENSORES -> Icons.Filled.Sensors
                 },
                 modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp),
             )

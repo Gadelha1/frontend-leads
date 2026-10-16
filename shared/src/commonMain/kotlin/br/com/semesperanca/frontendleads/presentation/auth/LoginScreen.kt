@@ -13,9 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -39,6 +36,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 import br.com.semesperanca.frontendleads.presentation.ui.RoundedTextField
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.visibility
+import br.com.semesperanca.frontendleads.resources.visibility_off
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -123,11 +124,13 @@ fun LoginScreen(
                                 enabled = !uiState.isLoading,
                             ) {
                                 Icon(
-                                    imageVector = if (uiState.isPasswordVisible) {
-                                        Icons.Filled.VisibilityOff
-                                    } else {
-                                        Icons.Filled.Visibility
-                                    },
+                                    painter = painterResource(
+                                        if (uiState.isPasswordVisible) {
+                                            Res.drawable.visibility_off
+                                        } else {
+                                            Res.drawable.visibility
+                                        }
+                                    ),
                                     contentDescription = if (uiState.isPasswordVisible) {
                                         "Ocultar senha"
                                     } else {

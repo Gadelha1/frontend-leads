@@ -74,6 +74,32 @@ internal suspend fun ApiClient.delete(path: String): ApiResult<Unit> = try {
     ApiResult.Error("Sem conexão com o servidor")
 }
 
+internal suspend fun ApiClient.patch(
+    path: String,
+): ApiResult<Unit> = try {
+    val response = client.patch(path) {
+        contentType(ContentType.Application.Json)
+    }
+    handle(response)
+} catch (t: Throwable) {
+    if (t is kotlinx.coroutines.CancellationException) throw t
+    ApiResult.Error("Sem conexão com o servidor")
+}
+
+internal suspend inline fun <reified Req, reified Res> ApiClient.patch(
+    path: String,
+    body: Req,
+): ApiResult<Res> = try {
+    val response = client.patch(path) {
+        contentType(ContentType.Application.Json)
+        setBody(apiJson.encodeToString(body))
+    }
+    handle(response)
+} catch (t: Throwable) {
+    if (t is kotlinx.coroutines.CancellationException) throw t
+    ApiResult.Error("Sem conexão com o servidor")
+}
+
 private suspend inline fun <reified T> handle(response: HttpResponse): ApiResult<T> {
     val status = response.status
     return if (status.isSuccess()) {
