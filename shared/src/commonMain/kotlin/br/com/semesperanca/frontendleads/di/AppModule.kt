@@ -12,6 +12,7 @@ import br.com.semesperanca.frontendleads.presentation.activities.ActivitiesViewM
 import br.com.semesperanca.frontendleads.presentation.leads.LeadDetailViewModel
 import br.com.semesperanca.frontendleads.presentation.leads.LeadsViewModel
 import br.com.semesperanca.frontendleads.presentation.properties.PropertyFormViewModel
+import br.com.semesperanca.frontendleads.presentation.users.UsersViewModel
 import br.com.semesperanca.frontendleads.presentation.teams.TeamsViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -31,6 +32,7 @@ private val presentationModule = module {
     viewModelOf(::LeadsViewModel)
     viewModelOf(::LeadDetailViewModel)
     viewModelOf(::PropertyFormViewModel)
+    viewModelOf(::UsersViewModel)
     viewModelOf(::TeamsViewModel)
     viewModelOf(::ActivitiesViewModel)
 }
