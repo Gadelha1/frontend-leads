@@ -42,6 +42,7 @@ import br.com.semesperanca.frontendleads.resources.list
 import br.com.semesperanca.frontendleads.resources.manage_accounts
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
+import br.com.semesperanca.frontendleads.presentation.users.UsersScreen
 import org.koin.compose.viewmodel.koinViewModel
 
 private enum class MainTab(val label: String, val icon: DrawableResource) {
@@ -90,10 +91,7 @@ fun MainTabsScreen() {
                     message = "Esta funcionalidade estará disponível em breve.",
                 )
                 MainTab.IMOVEIS -> PropertiesScreen()
-                MainTab.USUARIOS -> TabPlaceholder(
-                    title = "Usuários",
-                    message = "Esta funcionalidade estará disponível em breve.",
-                )
+                MainTab.USUARIOS -> UsersScreen()
             }
         }
         Column(

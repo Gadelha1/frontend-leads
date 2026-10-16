@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import br.com.semesperanca.frontendleads.resources.Res
 import br.com.semesperanca.frontendleads.resources.add
@@ -24,6 +25,7 @@ fun AddButton(
     modifier: Modifier = Modifier,
     size: Int = 52,
     contentDescription: String = "Adicionar",
+    icon: ImageVector = Icons.Filled.Add,
 ) {
     Box(
         modifier = modifier

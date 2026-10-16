@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 import br.com.semesperanca.frontendleads.presentation.ui.Formatters
+import br.com.semesperanca.frontendleads.presentation.ui.ModalSheet
 import br.com.semesperanca.frontendleads.presentation.ui.Pill
 import br.com.semesperanca.frontendleads.presentation.ui.RoundedTextField
 import br.com.semesperanca.frontendleads.resources.Res
@@ -510,27 +511,4 @@ internal fun TagPickerSheet(
     }
 }
 
-@Composable
-private fun ModalSheet(onDismiss: () -> Unit, content: @Composable ColumnScope.() -> Unit) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(AppColors.Black50)
-            .clickable(
-                interactionSource = remember { MutableInteractionSource() },
-                indication = null,
-            ) { onDismiss() },
-    ) {
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .verticalScroll(rememberScrollState())
-                .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-                .background(AppColors.White)
-                .padding(20.dp),
-            content = content,
-        )
-    }
-}
+
