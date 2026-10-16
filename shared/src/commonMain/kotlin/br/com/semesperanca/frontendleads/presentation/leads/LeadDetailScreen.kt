@@ -11,17 +11,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.GpsFixed
-import androidx.compose.material.icons.filled.Lightbulb
-import androidx.compose.material.icons.filled.LocalOffer
-import androidx.compose.material.icons.filled.Message
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -41,6 +38,13 @@ import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 import br.com.semesperanca.frontendleads.presentation.ui.BackButton
 import br.com.semesperanca.frontendleads.presentation.ui.Formatters
 import br.com.semesperanca.frontendleads.presentation.ui.Pill
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.chat
+import br.com.semesperanca.frontendleads.resources.lightbulb
+import br.com.semesperanca.frontendleads.resources.my_location
+import br.com.semesperanca.frontendleads.resources.schedule
+import br.com.semesperanca.frontendleads.resources.sell
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -94,6 +98,8 @@ internal fun LeadDetailScreen(
         Box(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
+                .navigationBarsPadding()
+                .imePadding()
                 .padding(24.dp)
                 .size(56.dp)
                 .clip(CircleShape)
@@ -104,7 +110,7 @@ internal fun LeadDetailScreen(
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector = Icons.Filled.Message,
+                painter = painterResource(Res.drawable.chat),
                 contentDescription = "Chat",
                 tint = AppColors.White,
                 modifier = Modifier.size(26.dp),
@@ -147,6 +153,7 @@ private fun DetailHeader(lead: LeadUi, onBack: () -> Unit, onUnarchive: () -> Un
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .statusBarsPadding()
             .padding(horizontal = 16.dp, vertical = 12.dp),
     ) {
         Row(
@@ -275,10 +282,10 @@ private fun TabBar(activeTab: DetailTab, onTabSelected: (DetailTab) -> Unit) {
         horizontalArrangement = Arrangement.Center,
     ) {
         val tabs = listOf(
-            DetailTab.ACTIVITY to Icons.Filled.AccessTime,
-            DetailTab.INSIGHT to Icons.Filled.Lightbulb,
-            DetailTab.TAGS to Icons.Filled.LocalOffer,
-            DetailTab.ACTIONS to Icons.Filled.GpsFixed,
+            DetailTab.ACTIVITY to Res.drawable.schedule,
+            DetailTab.INSIGHT to Res.drawable.lightbulb,
+            DetailTab.TAGS to Res.drawable.sell,
+            DetailTab.ACTIONS to Res.drawable.my_location,
         )
         tabs.forEach { (tab, icon) ->
             val selected = activeTab == tab
@@ -295,7 +302,7 @@ private fun TabBar(activeTab: DetailTab, onTabSelected: (DetailTab) -> Unit) {
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    imageVector = icon,
+                    painter = painterResource(icon),
                     contentDescription = tab.labelRes,
                     tint = if (selected) AppColors.White else AppColors.Gray600,
                     modifier = Modifier.size(20.dp),

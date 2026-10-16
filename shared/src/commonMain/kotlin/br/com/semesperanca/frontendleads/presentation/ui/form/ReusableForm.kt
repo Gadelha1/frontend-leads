@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -31,6 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 import br.com.semesperanca.frontendleads.presentation.ui.RoundedTextField
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.arrow_drop_down
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun ReusableForm(
@@ -104,7 +105,7 @@ private fun DropdownField(
                 modifier = Modifier.weight(1f),
             )
             Icon(
-                imageVector = Icons.Filled.ArrowDropDown,
+                painter = painterResource(Res.drawable.arrow_drop_down),
                 contentDescription = null,
                 tint = AppColors.Gray400,
                 modifier = Modifier.size(22.dp),

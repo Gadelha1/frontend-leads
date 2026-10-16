@@ -21,9 +21,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -43,6 +40,9 @@ import br.com.semesperanca.frontendleads.presentation.ui.AddButton
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 import br.com.semesperanca.frontendleads.presentation.ui.Formatters
 import br.com.semesperanca.frontendleads.presentation.ui.Pill
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.lightbulb
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 internal fun ActivityTab(
@@ -115,7 +115,7 @@ private fun ActivityCardRow(activity: LocalActivity, onClick: () -> Unit) {
             contentAlignment = Alignment.Center,
         ) {
             Icon(
-                imageVector = activityTypeIcon(activity.type),
+                painter = painterResource(activityTypeIcon(activity.type)),
                 contentDescription = null,
                 tint = AppColors.Emerald700,
                 modifier = Modifier.size(18.dp),
@@ -163,7 +163,7 @@ internal fun InsightTab(lead: LeadUi) {
             modifier = Modifier.padding(top = 12.dp),
         ) {
             Icon(
-                imageVector = Icons.Filled.Lightbulb,
+                painter = painterResource(Res.drawable.lightbulb),
                 contentDescription = null,
                 tint = AppColors.Amber500,
                 modifier = Modifier.size(22.dp),
