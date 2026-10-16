@@ -47,4 +47,8 @@ class LoginViewModel : ViewModel() {
             }
         }
     }
+
+    fun logout() {
+        _uiState.update { AuthUiState() }
+    }
 }
