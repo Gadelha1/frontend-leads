@@ -21,7 +21,6 @@ dependencies {
     implementation(projects.shared)
     implementation(compose.desktop.currentOs)
     implementation(compose.material3)
-    implementation(libs.compose.material.icons.extended)
     implementation(libs.koin.core)
 }
 
@@ -31,7 +30,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg, org.jetbrains.compose.desktop.application.dsl.TargetFormat.Msi, org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb)
-            packageName = "mobile-leads"
+            packageName = "frontend-leads"
             packageVersion = "0.1.0"
         }
 

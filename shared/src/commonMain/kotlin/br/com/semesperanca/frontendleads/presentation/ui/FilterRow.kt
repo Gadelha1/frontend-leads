@@ -16,13 +16,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.painterResource
 
 data class FilterItem(
     val label: String,
-    val icon: ImageVector,
+    val icon: DrawableResource,
 )
 
 @Composable
@@ -55,7 +56,7 @@ fun FilterRow(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    imageVector = item.icon,
+                    painter = painterResource(item.icon),
                     contentDescription = item.label,
                     tint = if (selected) AppColors.White else AppColors.Gray600,
                     modifier = Modifier.size(20.dp),

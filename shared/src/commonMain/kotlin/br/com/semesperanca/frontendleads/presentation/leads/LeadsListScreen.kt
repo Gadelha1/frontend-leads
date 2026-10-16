@@ -23,15 +23,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.List
-import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.Archive
-import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material.icons.filled.Inbox
-import androidx.compose.material.icons.filled.Restore
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.SwapHoriz
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -43,8 +34,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
@@ -52,7 +43,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
@@ -68,13 +58,24 @@ import br.com.semesperanca.frontendleads.presentation.ui.Formatters
 import br.com.semesperanca.frontendleads.presentation.ui.LeadSkeletonList
 import br.com.semesperanca.frontendleads.presentation.ui.Pill
 import br.com.semesperanca.frontendleads.presentation.ui.SearchField
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.archive
+import br.com.semesperanca.frontendleads.resources.calendar_month
+import br.com.semesperanca.frontendleads.resources.history
+import br.com.semesperanca.frontendleads.resources.inbox
+import br.com.semesperanca.frontendleads.resources.list
+import br.com.semesperanca.frontendleads.resources.schedule
+import br.com.semesperanca.frontendleads.resources.star
+import br.com.semesperanca.frontendleads.resources.swap_horiz
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 
 private val FILTER_OPTIONS = listOf(
-    FilterItem("Todos", Icons.AutoMirrored.Filled.List),
-    FilterItem("Futuros", Icons.Filled.AccessTime),
-    FilterItem("Favoritos", Icons.Filled.Star),
-    FilterItem("Arquivados", Icons.Filled.Archive),
+    FilterItem("Todos", Res.drawable.list),
+    FilterItem("Futuros", Res.drawable.schedule),
+    FilterItem("Favoritos", Res.drawable.star),
+    FilterItem("Arquivados", Res.drawable.archive),
 )
 
 private val FILTERS = LeadFilter.entries
@@ -206,7 +207,7 @@ private fun NewLeadsBanner(count: Int, onClick: () -> Unit) {
             )
         }
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.List,
+            painter = painterResource(Res.drawable.list),
             contentDescription = null,
             tint = AppColors.Emerald500,
             modifier = Modifier.size(20.dp),
@@ -443,7 +444,7 @@ private fun EmptyView(filter: LeadFilter) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
-            imageVector = Icons.Filled.Inbox,
+            painter = painterResource(Res.drawable.inbox),
             contentDescription = null,
             tint = AppColors.Gray300,
             modifier = Modifier.padding(bottom = 16.dp).size(32.dp),
@@ -506,7 +507,7 @@ private fun LeadActionSheet(
                     .background(AppColors.Gray300),
             )
             ActionSheetItem(
-                icon = Icons.Filled.Star,
+                icon = Res.drawable.star,
                 iconTint = if (lead.isFavorite) AppColors.Yellow500 else AppColors.Gray500,
                 label = if (lead.isFavorite) "Remover dos Favoritos" else "Adicionar aos Favoritos",
             ) {
@@ -514,21 +515,21 @@ private fun LeadActionSheet(
                 onClose()
             }
             ActionSheetItem(
-                icon = Icons.Filled.CalendarMonth,
+                icon = Res.drawable.calendar_month,
                 iconTint = AppColors.Gray500,
                 label = "Adicionar Atividade",
             ) {
                 onClose()
             }
             ActionSheetItem(
-                icon = Icons.Filled.SwapHoriz,
+                icon = Res.drawable.swap_horiz,
                 iconTint = AppColors.Gray500,
                 label = "Transferir Lead",
             ) {
                 onClose()
             }
             ActionSheetItem(
-                icon = Icons.Filled.Restore,
+                icon = Res.drawable.history,
                 iconTint = if (lead.isArchived) AppColors.Emerald600 else AppColors.Gray500,
                 label = if (lead.isArchived) "Desarquivar Lead" else "Arquivar Lead",
             ) {
@@ -541,7 +542,7 @@ private fun LeadActionSheet(
 
 @Composable
 private fun ActionSheetItem(
-    icon: ImageVector,
+    icon: DrawableResource,
     iconTint: androidx.compose.ui.graphics.Color,
     label: String,
     onClick: () -> Unit,
@@ -558,7 +559,7 @@ private fun ActionSheetItem(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            imageVector = icon,
+            painter = painterResource(icon),
             contentDescription = null,
             tint = iconTint,
             modifier = Modifier.size(22.dp),

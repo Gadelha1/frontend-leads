@@ -1,14 +1,14 @@
 package br.com.semesperanca.frontendleads.presentation.leads
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.House
-import androidx.compose.material.icons.filled.LocalPhone
-import androidx.compose.material.icons.filled.Restore
-import androidx.compose.material.icons.filled.TaskAlt
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.call
+import br.com.semesperanca.frontendleads.resources.history
+import br.com.semesperanca.frontendleads.resources.house
+import br.com.semesperanca.frontendleads.resources.schedule
+import br.com.semesperanca.frontendleads.resources.task_alt
+import org.jetbrains.compose.resources.DrawableResource
 
 internal enum class DetailTab(val labelRes: String) {
     ACTIVITY("Atividades"),
@@ -44,12 +44,12 @@ internal val AVAILABLE_TAGS = listOf(
 
 internal val AVAILABLE_ACTIVITY_TYPES = listOf("VISITA", "LIGACAO", "RETORNO", "PROPOSTA", "OUTRO")
 
-internal fun activityTypeIcon(type: String): ImageVector = when (type) {
-    "VISITA" -> Icons.Filled.House
-    "LIGACAO" -> Icons.Filled.LocalPhone
-    "RETORNO" -> Icons.Filled.Restore
-    "PROPOSTA" -> Icons.Filled.TaskAlt
-    else -> Icons.Filled.AccessTime
+internal fun activityTypeIcon(type: String): DrawableResource = when (type) {
+    "VISITA" -> Res.drawable.house
+    "LIGACAO" -> Res.drawable.call
+    "RETORNO" -> Res.drawable.history
+    "PROPOSTA" -> Res.drawable.task_alt
+    else -> Res.drawable.schedule
 }
 
 internal fun activityTypeLabel(type: String): String = when (type) {

@@ -13,12 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Apartment
-import androidx.compose.material.icons.filled.Sensors
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,6 +31,9 @@ import br.com.semesperanca.frontendleads.presentation.sensors.AssociateDeviceFor
 import br.com.semesperanca.frontendleads.presentation.sensors.SensorsScreen
 import br.com.semesperanca.frontendleads.presentation.ui.AddButton
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.apartment
+import org.jetbrains.compose.resources.painterResource
 
 private sealed interface PropertyOverlay {
     data object None : PropertyOverlay
@@ -141,7 +138,7 @@ private fun PropertiesEmptyState() {
         verticalArrangement = Arrangement.Center,
     ) {
         Icon(
-            imageVector = Icons.Filled.Apartment,
+            painter = painterResource(Res.drawable.apartment),
             contentDescription = null,
             tint = AppColors.Gray300,
             modifier = Modifier.size(56.dp),

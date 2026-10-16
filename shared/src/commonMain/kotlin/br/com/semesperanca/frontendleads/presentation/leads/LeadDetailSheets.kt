@@ -21,10 +21,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.DeleteOutline
-import androidx.compose.material.icons.filled.ModeEdit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
@@ -53,6 +49,11 @@ import br.com.semesperanca.frontendleads.presentation.ui.Formatters
 import br.com.semesperanca.frontendleads.presentation.ui.ModalSheet
 import br.com.semesperanca.frontendleads.presentation.ui.Pill
 import br.com.semesperanca.frontendleads.presentation.ui.RoundedTextField
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.date_range
+import br.com.semesperanca.frontendleads.resources.delete
+import br.com.semesperanca.frontendleads.resources.edit
+import org.jetbrains.compose.resources.painterResource
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
@@ -102,7 +103,7 @@ internal fun ActivityFormSheet(
                     contentAlignment = Alignment.Center,
                 ) {
                     Icon(
-                        imageVector = activityTypeIcon(t),
+                        painter = painterResource(activityTypeIcon(t)),
                         contentDescription = activityTypeLabel(t),
                         tint = if (selected) AppColors.White else AppColors.Gray600,
                         modifier = Modifier.size(20.dp),
@@ -122,7 +123,7 @@ internal fun ActivityFormSheet(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                imageVector = activityTypeIcon(type),
+                painter = painterResource(activityTypeIcon(type)),
                 contentDescription = null,
                 tint = AppColors.Gray500,
                 modifier = Modifier.size(18.dp),
@@ -301,7 +302,7 @@ private fun DateTimeField(display: String, onClick: () -> Unit) {
             modifier = Modifier.weight(1f),
         )
         Icon(
-            imageVector = Icons.Filled.DateRange,
+            painter = painterResource(Res.drawable.date_range),
             contentDescription = "Selecionar data",
             tint = AppColors.Gray500,
             modifier = Modifier.size(22.dp),
@@ -327,7 +328,7 @@ internal fun ActivityDetailSheet(
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    imageVector = activityTypeIcon(activity.type),
+                    painter = painterResource(activityTypeIcon(activity.type)),
                     contentDescription = null,
                     tint = AppColors.Emerald700,
                     modifier = Modifier.size(20.dp),
@@ -393,7 +394,7 @@ internal fun ActivityDetailSheet(
                 modifier = Modifier.weight(1f).height(44.dp),
             ) {
                 Icon(
-                    imageVector = Icons.Filled.ModeEdit,
+                    painter = painterResource(Res.drawable.edit),
                     contentDescription = null,
                     tint = AppColors.Blue500,
                     modifier = Modifier.size(18.dp),
@@ -412,7 +413,7 @@ internal fun ActivityDetailSheet(
                 modifier = Modifier.weight(1f).height(44.dp),
             ) {
                 Icon(
-                    imageVector = Icons.Filled.DeleteOutline,
+                    painter = painterResource(Res.drawable.delete),
                     contentDescription = null,
                     tint = AppColors.Red500,
                     modifier = Modifier.size(18.dp),

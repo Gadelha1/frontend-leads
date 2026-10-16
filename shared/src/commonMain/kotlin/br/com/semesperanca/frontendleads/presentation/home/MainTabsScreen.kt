@@ -12,17 +12,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.List
-import androidx.compose.material.icons.automirrored.filled.Logout
-import androidx.compose.material.icons.filled.Apartment
-import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material.icons.filled.Groups
-import androidx.compose.material.icons.filled.ManageAccounts
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.HorizontalDivider
@@ -35,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -47,16 +38,23 @@ import br.com.semesperanca.frontendleads.presentation.leads.LeadsListScreen
 import br.com.semesperanca.frontendleads.presentation.leads.LeadsViewModel
 import br.com.semesperanca.frontendleads.presentation.properties.PropertiesScreen
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
+import br.com.semesperanca.frontendleads.resources.Res
+import br.com.semesperanca.frontendleads.resources.apartment
+import br.com.semesperanca.frontendleads.resources.calendar_month
+import br.com.semesperanca.frontendleads.resources.groups
+import br.com.semesperanca.frontendleads.resources.list
+import br.com.semesperanca.frontendleads.resources.manage_accounts
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.painterResource
 import br.com.semesperanca.frontendleads.presentation.users.UsersScreen
 import org.koin.compose.viewmodel.koinViewModel
 
-
-private enum class MainTab(val label: String, val icon: ImageVector) {
-    LEADS("Leads", Icons.AutoMirrored.Filled.List),
-    EQUIPES("Equipes", Icons.Filled.Groups),
-    ATIVIDADES("Atividades", Icons.Filled.CalendarMonth),
-    IMOVEIS("Imóveis", Icons.Filled.Apartment),
-    USUARIOS("Usuários", Icons.Filled.ManageAccounts),
+private enum class MainTab(val label: String, val icon: DrawableResource) {
+    LEADS("Leads", Res.drawable.list),
+    EQUIPES("Equipes", Res.drawable.groups),
+    ATIVIDADES("Atividades", Res.drawable.calendar_month),
+    IMOVEIS("Imóveis", Res.drawable.apartment),
+    USUARIOS("Usuários", Res.drawable.manage_accounts),
 }
 
 @Composable
@@ -112,7 +110,7 @@ fun MainTabsScreen() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(64.dp),
+                    .height(56.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 MainTab.entries.forEach { tab ->
@@ -167,6 +165,7 @@ private fun Header(onLogoutClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .statusBarsPadding()
             .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -190,7 +189,7 @@ private fun Header(onLogoutClick: () -> Unit) {
 @Composable
 private fun TabBarItem(
     title: String,
-    icon: ImageVector,
+    icon: DrawableResource,
     selected: Boolean,
     modifier: Modifier,
     onClick: () -> Unit,
@@ -205,11 +204,12 @@ private fun TabBarItem(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
-            imageVector = icon,
+            painter = painterResource(icon),
             contentDescription = title,
             tint = if (selected) AppColors.Emerald600 else AppColors.Gray500,
-            modifier = Modifier.padding(bottom = 2.dp),
+            modifier = Modifier.size(22.dp),
         )
+        Spacer(modifier = Modifier.height(2.dp))
         Text(
             text = title,
             color = if (selected) AppColors.Emerald600 else AppColors.Gray500,
