@@ -6,20 +6,28 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Apartment
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.ManageAccounts
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.semesperanca.frontendleads.presentation.auth.LoginViewModel
 import br.com.semesperanca.frontendleads.presentation.leads.LeadDetailScreen
 import br.com.semesperanca.frontendleads.presentation.leads.LeadUi
 import br.com.semesperanca.frontendleads.presentation.leads.LeadsListScreen
@@ -40,6 +49,7 @@ import br.com.semesperanca.frontendleads.presentation.properties.PropertiesScree
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
 import br.com.semesperanca.frontendleads.presentation.users.UsersScreen
 import org.koin.compose.viewmodel.koinViewModel
+
 
 private enum class MainTab(val label: String, val icon: ImageVector) {
     LEADS("Leads", Icons.AutoMirrored.Filled.List),
@@ -54,6 +64,8 @@ fun MainTabsScreen() {
     var selectedTab by remember { mutableStateOf(MainTab.LEADS) }
     var leadDetail by remember { mutableStateOf<LeadUi?>(null) }
     val leadsViewModel: LeadsViewModel = koinViewModel()
+    val loginViewModel: LoginViewModel = koinViewModel()
+    var showLogoutDialog by remember { mutableStateOf(false) }
 
     if (leadDetail != null) {
         LeadDetailScreen(
@@ -72,7 +84,7 @@ fun MainTabsScreen() {
     }
 
     Column(modifier = Modifier.fillMaxSize().background(AppColors.Gray50)) {
-        Header()
+        Header(onLogoutClick = { showLogoutDialog = true })
         Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
             when (selectedTab) {
                 MainTab.LEADS -> LeadsListScreen(
@@ -116,10 +128,42 @@ fun MainTabsScreen() {
             }
         }
     }
+
+    if (showLogoutDialog) {
+        AlertDialog(
+            onDismissRequest = { showLogoutDialog = false },
+            title = {
+                Text(text = "Sair", color = AppColors.Gray900, fontWeight = FontWeight.SemiBold)
+            },
+            text = {
+                Text(text = "Tem certeza que deseja sair?", color = AppColors.Gray700)
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showLogoutDialog = false
+                        loginViewModel.logout()
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = AppColors.Red600,
+                        contentColor = AppColors.White,
+                    ),
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    Text("Sair")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showLogoutDialog = false }) {
+                    Text("Cancelar", color = AppColors.Gray700)
+                }
+            },
+        )
+    }
 }
 
 @Composable
-private fun Header() {
+private fun Header(onLogoutClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -132,6 +176,14 @@ private fun Header() {
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
         )
+        Spacer(modifier = Modifier.weight(1f))
+        IconButton(onClick = onLogoutClick) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.Logout,
+                contentDescription = "Sair",
+                tint = AppColors.Gray700,
+            )
+        }
     }
 }
 
@@ -191,3 +243,4 @@ private fun TabPlaceholder(title: String, message: String) {
         )
     }
 }
+
