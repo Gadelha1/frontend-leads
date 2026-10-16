@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -23,6 +24,7 @@ fun AddButton(
     modifier: Modifier = Modifier,
     size: Int = 52,
     contentDescription: String = "Adicionar",
+    icon: ImageVector = Icons.Filled.Add,
 ) {
     Box(
         modifier = modifier
@@ -37,7 +39,7 @@ fun AddButton(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            imageVector = Icons.Filled.Add,
+            imageVector = icon,
             contentDescription = contentDescription,
             tint = AppColors.White,
             modifier = Modifier.size(26.dp),
