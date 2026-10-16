@@ -237,7 +237,8 @@ private fun TeamFormScreen(
             values = values,
             onValueChange = onValueChange,
             onSubmit = onSubmit,
-            submitLabel = if (isEditing) "Atualizar" else "Criar Time",
+            onClear = { teamFormFields.forEach { onValueChange(it.key, "") } },
+            submitLabel = if (isEditing) "Gravar" else "Gravar",
             isLoading = isLoading,
             errorMessage = error,
         )

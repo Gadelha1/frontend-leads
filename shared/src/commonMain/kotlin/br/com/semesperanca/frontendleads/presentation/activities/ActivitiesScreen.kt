@@ -251,7 +251,8 @@ private fun ActivityFormScreen(
             values = values,
             onValueChange = onValueChange,
             onSubmit = onSubmit,
-            submitLabel = if (isEditing) "Atualizar" else "Criar Atividade",
+            onClear = { activityFormFields.forEach { onValueChange(it.key, "") } },
+            submitLabel = "Gravar",
             isLoading = isLoading,
             errorMessage = error,
         )

@@ -39,7 +39,8 @@ fun DynamicForm(
     values: Map<String, String>,
     onValueChange: (key: String, value: String) -> Unit,
     onSubmit: () -> Unit,
-    submitLabel: String = "Salvar",
+    onClear: () -> Unit,
+    submitLabel: String = "Gravar",
     isLoading: Boolean = false,
     errorMessage: String? = null,
 ) {
@@ -66,6 +67,7 @@ fun DynamicForm(
             )
         }
 
+        // Botão Gravar
         Button(
             onClick = onSubmit,
             enabled = !isLoading,
@@ -76,8 +78,25 @@ fun DynamicForm(
             shape = RoundedCornerShape(8.dp),
         ) {
             Text(
-                text = if (isLoading) "Salvando..." else submitLabel,
+                text = if (isLoading) "Gravando..." else submitLabel,
                 color = AppColors.White,
+                fontWeight = FontWeight.SemiBold,
+            )
+        }
+
+        // Botão Limpar Campos
+        Button(
+            onClick = onClear,
+            enabled = !isLoading,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = AppColors.White),
+            shape = RoundedCornerShape(8.dp),
+        ) {
+            Text(
+                text = "Limpar Campos",
+                color = AppColors.Gray700,
                 fontWeight = FontWeight.SemiBold,
             )
         }
