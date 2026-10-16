@@ -38,6 +38,7 @@ import br.com.semesperanca.frontendleads.presentation.leads.LeadsListScreen
 import br.com.semesperanca.frontendleads.presentation.leads.LeadsViewModel
 import br.com.semesperanca.frontendleads.presentation.properties.PropertiesScreen
 import br.com.semesperanca.frontendleads.presentation.ui.AppColors
+import br.com.semesperanca.frontendleads.presentation.users.UsersScreen
 import org.koin.compose.viewmodel.koinViewModel
 
 private enum class MainTab(val label: String, val icon: ImageVector) {
@@ -86,10 +87,7 @@ fun MainTabsScreen() {
                     message = "Esta funcionalidade estará disponível em breve.",
                 )
                 MainTab.IMOVEIS -> PropertiesScreen()
-                MainTab.USUARIOS -> TabPlaceholder(
-                    title = "Usuários",
-                    message = "Esta funcionalidade estará disponível em breve.",
-                )
+                MainTab.USUARIOS -> UsersScreen()
             }
         }
         Column(
