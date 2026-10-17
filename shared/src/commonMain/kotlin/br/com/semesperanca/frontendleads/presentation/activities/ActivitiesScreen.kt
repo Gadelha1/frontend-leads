@@ -224,11 +224,12 @@ private fun ActivityFormScreen(
             )
         }
         DynamicForm(
-            fields = activityFormFields,
+            sections = activityFormSections,
             values = values,
             onValueChange = onValueChange,
             onSubmit = onSubmit,
             onClear = { activityFormFields.forEach { onValueChange(it.key, "") } },
+            modifier = Modifier.weight(1f),
             submitLabel = "Gravar",
             isLoading = isLoading,
             errorMessage = error,

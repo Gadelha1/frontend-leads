@@ -633,11 +633,12 @@ private fun LeadFormScreen(
             )
         }
         DynamicForm(
-            fields = leadFormFields,
+            sections = leadFormSections,
             values = values,
             onValueChange = onValueChange,
             onSubmit = onSubmit,
             onClear = { leadFormFields.forEach { onValueChange(it.key, "") } },
+            modifier = Modifier.weight(1f),
             submitLabel = "Gravar",
         )
     }

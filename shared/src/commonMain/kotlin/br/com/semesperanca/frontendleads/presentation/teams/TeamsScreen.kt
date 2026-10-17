@@ -209,11 +209,12 @@ private fun TeamFormScreen(
             )
         }
         DynamicForm(
-            fields = teamFormFields,
+            sections = teamFormSections,
             values = values,
             onValueChange = onValueChange,
             onSubmit = onSubmit,
             onClear = { teamFormFields.forEach { onValueChange(it.key, "") } },
+            modifier = Modifier.weight(1f),
             submitLabel = if (isEditing) "Gravar" else "Gravar",
             isLoading = isLoading,
             errorMessage = error,
