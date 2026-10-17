@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
@@ -49,6 +50,10 @@ fun TeamsScreen() {
     val viewModel: TeamsViewModel = koinViewModel()
     val state by viewModel.uiState.collectAsState()
     var searchQuery by remember { mutableStateOf("") }
+
+    DisposableEffect(Unit) {
+        onDispose { viewModel.dismissForm() }
+    }
 
     if (state.showForm) {
         val editing = state.editingTeam
