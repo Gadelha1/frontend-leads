@@ -2,13 +2,17 @@ package br.com.semesperanca.frontendleads.di
 
 import br.com.semesperanca.frontendleads.data.remote.ActivityApi
 import br.com.semesperanca.frontendleads.data.remote.ApiClient
+import br.com.semesperanca.frontendleads.data.remote.AuthApi
 import br.com.semesperanca.frontendleads.data.remote.BranchOfficeApi
 import br.com.semesperanca.frontendleads.data.remote.LeadApi
 import br.com.semesperanca.frontendleads.data.remote.RealEstateAgencyApi
 import br.com.semesperanca.frontendleads.data.remote.TeamApi
+import br.com.semesperanca.frontendleads.data.repository.DefaultAuthRepository
 import br.com.semesperanca.frontendleads.data.repository.DefaultLeadRepository
 import br.com.semesperanca.frontendleads.data.storage.KeyValueStore
+import br.com.semesperanca.frontendleads.data.storage.SessionStorage
 import br.com.semesperanca.frontendleads.data.storage.createKeyValueStore
+import br.com.semesperanca.frontendleads.domain.repository.AuthRepository
 import br.com.semesperanca.frontendleads.domain.repository.LeadRepository
 import br.com.semesperanca.frontendleads.presentation.activities.ActivitiesViewModel
 import br.com.semesperanca.frontendleads.presentation.agencies.RealEstateAgencyViewModel
@@ -27,12 +31,15 @@ import org.koin.dsl.module
 private val dataModule =
     module {
         single<KeyValueStore> { createKeyValueStore() }
-        single { ApiClient() }
+        single { SessionStorage(get()) }
+        single { ApiClient(session = get()) }
+        single { AuthApi(get()) }
         single { LeadApi(get()) }
         single { TeamApi(get()) }
         single { ActivityApi(get()) }
         single { RealEstateAgencyApi(get()) }
         single { BranchOfficeApi(get()) }
+        single<AuthRepository> { DefaultAuthRepository(get(), get()) }
         single<LeadRepository> { DefaultLeadRepository(get()) }
     }
 
